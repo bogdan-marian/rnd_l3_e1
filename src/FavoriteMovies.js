@@ -1,29 +1,25 @@
-import React, {Component} from 'react'
+import React, { PureComponent } from "react";
 
-class FavoriteMovies extends Component{
-    
-    render(){
-        
-        return (
-            <ul>
-                {
-                    //profiles, users, movies
-                    this.props.profiles.map(profile => (
-                        <li key={profile.id}>
-                            {
-                                <p>{`
-                                    ${this.props.users[profile.userID].name}
-                                    's favorite movie is 
-                                    ${this.props.movies[profile.favoriteMovieID].name}`}
-                                </p>
-                            }
-                        </li>
-                    ))
-                }
-            </ul>
-        )
-       
-    }
+class FavoriteMovies extends PureComponent {
+  render() {
+    const { profiles, users, movies } = this.props;
+
+    const profilesList = profiles.map(profile => {
+      const { id, userID, favoriteMovieID } = profile;
+      const currentUser = users[userID];
+      const favoriteMovie = movies[favoriteMovieID];
+      const favoriteMovieString = `${currentUser.name}'s favorite movie is ${
+        favoriteMovie.name
+      }`;
+      return (
+        <li key={id}>
+          <p>{favoriteMovieString}</p>
+        </li>
+      );
+    });
+
+    return <ul>{profilesList}</ul>;
+  }
 }
 
-export default FavoriteMovies
+export default FavoriteMovies;
