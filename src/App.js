@@ -108,7 +108,7 @@ class App extends Component {
         </header>
         <h2>Favorite Movies</h2>
         <div>
-          <FavoriteMovies profiles={profiles} />
+          <FavoriteMovies profiles={profiles} users={users} movies={movies} />
         </div>
       </div>
     );
